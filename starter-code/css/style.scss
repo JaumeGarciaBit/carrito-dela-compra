@@ -4,7 +4,10 @@ input {
 }
 
 .container {
-
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .info-container {
@@ -40,19 +43,24 @@ input {
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
-}
 
-.btn-success {
+  &-success 
+  {
     color: #fff;
     background-color: #5cb85c;
     border-color: #4cae4c;
+  }
+
+  &-delete 
+  {
+      color: #fff;
+      background-color: #CF000F;
+      border-color: #CF000F;
+  }
+
+
 }
 
-.btn-delete {
-    color: #fff;
-    background-color: #CF000F;
-    border-color: #CF000F;
-}
 
 .quantity {
   margin: 0 5px;

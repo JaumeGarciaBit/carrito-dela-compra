@@ -1,3 +1,5 @@
+const m_buttons = getElementsByClassName("btn-delete");
+
 const deleteItem = (e) =>{
 
 }

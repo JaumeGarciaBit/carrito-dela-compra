@@ -186,6 +186,13 @@ input {
   border: solid 1px black;
 }
 
+.container {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .btn {
   display: inline-block;
   padding: 6px 12px;
@@ -207,13 +214,11 @@ input {
   border: 1px solid transparent;
   border-radius: 4px;
 }
-
 .btn-success {
   color: #fff;
   background-color: #5cb85c;
   border-color: #4cae4c;
 }
-
 .btn-delete {
   color: #fff;
   background-color: #CF000F;
