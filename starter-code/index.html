@@ -9,30 +9,20 @@
 </head>
 <body>
   <h1><center>Fans Merchandising Shop</center></h1>
-  <div class="container">
-    <div>
-      <span>
-        <p class="productName">Camisetas</p>
-      </span>
-    </div>
-    <div>
-      <span>
-        <p class="unitCost">$10</p>
-      </span>
-    </div>
-    <div>
-      <label for="">QTY:</label>
-      <input type="number" min="0" placeholder="0">
-    </div>
-    <div>
-      <span>
-        <p class="totalCost">$0</p>
-      </span>
-    </div>
-    <div>
-      <button class="btn-delete">Delete</button>
-    </div>
+  <div id= "productList">
+
   </div>
-  <script type="text/javascript" src="./js/index.js"></script>
+  
+
+  <div class="container">
+    <input class = "createInput"id="createName" type="text" placeholder="prodcut name">
+    <input class = "createInput" id="createPrice" type="number" min="1" placeholder="price">
+    <button id ="createButton">Create</button>
+  </div>
+  <center>
+    <button id = "calcButton" class="btn-success">calculatePrice</button>
+    <h1><span>Total Price:$</span><span id ="totalPrice">0.00</span></h1>
+  </center>
+  <script type="text/javascript" src="./js/script.js"></script>
 </body>
 </html>
