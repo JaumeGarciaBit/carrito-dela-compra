@@ -3,14 +3,33 @@ input {
   border: solid 1px black;
 }
 
+html
+{
+  min-width: 900px;
+}
+
 .container {
   display: flex;
-  flex-flow: row;
+  flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
 
   width: 100%;
   height: 100%;
+}
+.container>*
+{
+  text-align: center;
+  max-width: 200px;
+  width: 20%;
+  height: 60px;
+}
+.createInput, #createButton
+{
+  height: 20px;
+  width: 100%;
+  max-width: 30%;
+  margin-bottom: 20px;
 }
 
 .info-container {

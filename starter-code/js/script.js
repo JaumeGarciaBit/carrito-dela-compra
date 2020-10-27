@@ -1,118 +1,3 @@
-const m_buttons = document.getElementsByClassName("btn-delete");
-const m_calcButton = document.getElementById("calcButton");
-const m_productLissDiv = document.getElementById("productList");
-
-const m_createProductButton = document.getElementById("createButton");
-
-const deleteItem = (i) => {
-    document.getElementById("con"+i).remove();
-}
-
-const getPriceByProduct = (itemNode) => {
-
-}
-
-const updatePriceByProduct = (productPrice, index) => {
-
-}
-
-const getTotalPrice = () => {
-
-}
-
-const createQuantityInput = () => {
-
-}
-
-const createDeleteButton = () => {
-
-}
-
-const createQuantityNode = () => {
-
-}
-
-const createItemNode = (name, price, i) => {
-
-    let l_result = `<div class="container" id="con${i}">
-    <div>
-      <span>
-        <p class="productName${i}">${name}</p>
-      </span>
-    </div>
-    <div>
-      <span>
-        <p id="unitCost${i}">$${price}</p>
-      </span>
-    </div>
-    <div>
-      <label for="">QTY:</label>
-      <input class = "qtyInput" id="qty${i}" type="number" min="0" placeholder="0">
-    </div>
-    <div>
-      <span>
-        <p class = "totalCost" id="totalCost${i}">$0</p>
-      </span>
-    </div>
-    <div>
-      <button onclick="onDeleteButton(${i})" id="product${i}" class="btn-delete">Delete</button>
-    </div>
-  </div>`;
-
-    m_productLissDiv.innerHTML += l_result;
-
-}
-
-const createNewItem = (product, i) => {
-    createItemNode(product.name, product.price, i);
-}
-
-const onCalculatePrice = () => {
-    let m_prices = document.getElementsByClassName("totalCost");
-    let l_result = 0;
-    for (let i = 0; i < m_prices.length; i++) 
-    {
-        console.log(i + "|"+m_prices[i] +"|"+m_prices[i] != null);
-        if (m_prices[i] != null)
-        {
-            let l_element = document.getElementById("totalCost" + i).innerHTML.slice(1);
-            if (l_element > 0)
-                l_result += (parseInt(l_element));
-        }
-    }
-
-    document.getElementById("totalPrice").innerHTML = l_result;
-}
-
-const onInputValueChange = (e) => {
-
-    let l_id = e.target.id.slice(3);
-    let l_cost = document.getElementById("unitCost" + l_id).innerHTML.slice(1);
-    let l_element = document.getElementById("totalCost" + l_id);
-
-
-    l_element.innerHTML = `$${e.target.value * parseInt(l_cost)}`
-}
-const onCreateButton = () => {
-    const l_name = document.getElementById("createName").value;
-    const l_price = document.getElementById("createPrice").value;
-
-    if (l_price != "" && l_name != "") 
-    {
-        createItemNode(l_name, l_price, m_inputs.length);
-        m_inputs = document.getElementsByClassName("qtyInput");
-
-        for (let i = 0; i < m_inputs.length; i++)
-            m_inputs[i].addEventListener('change', onInputValueChange);
-    }
-}
-const onDeleteButton = (e) =>
-{
-    let l_id = e;
-    deleteItem(l_id);
-}
-
-let m_shoppingCart = [];
 let m_products = JSON.parse(
     `[{
         "_id": "5ced8cb973154be3ab01e830",
@@ -416,23 +301,89 @@ let m_products = JSON.parse(
         ]
     }]`
 );
-let m_inputs = document.getElementsByClassName("qtyInput");
-let m_deleteButtons = document.getElementsByClassName("btn-delete");
+let m_shoppingList = [];
+let m_stockContainer = document.getElementsByClassName("stockList")[0];
 
-//Init web
-for (let i = 0; i < m_products.length; i++) {
-    createNewItem(m_products[i], i);
+function listStock()
+{
+    m_stockContainer.innerHTML = "";
+    for (let i = 0; i < m_products.length; i++) {
+        const l_element = m_products[i];
+        writeProduct(l_element);
+        
+    }
 }
-for (let i = 0; i < m_inputs.length; i++) {
-    m_inputs[i].addEventListener('change', onInputValueChange)
+
+function writeProduct(product)
+{
+    let l_result =
+    `<li><p>${product._id}</p> <p>${product.name}</p> <p>${product.category}</p> <p id="qty${product._id}">${product.quantity}</p></li>`
+
+    m_stockContainer.innerHTML += l_result;
 }
 
-addEventListener = ('load', () => {
-    m_calcButton.addEventListener('click', onCalculatePrice);
-    m_createProductButton.addEventListener('click', onCreateButton);
+function demandProduct(product, quantity)
+{
+    if(quantity === undefined || quantity == 0)
+        quantity = Math.floor(Math.random()*30+1);
 
-    // for (let i = 0; i < m_deleteButtons.length; i++) {
-    //     const l_element = m_deleteButtons[i];
-    //     l_element.addEventListener('click', onDeleteButton);
-    //}
-});
+    product.quantity += quantity;
+    
+    return product;
+}
+
+function loadStock(product)
+{
+    if(!m_products.includes(product))
+    {
+        m_products.push(product);
+        writeProduct(product);
+    }
+    else
+    {
+        let l_element = document.getElementById("qty"+product._id);
+        l_element.textContent = product.quantity;
+    }
+}
+
+const addProductForm =() =>
+{
+    let l_name = document.forms["productForm"]["fname"].value;
+    let l_category = document.forms["productForm"]["fcategory"].value;
+    let l_index = m_products.length;
+    let l_id = "5ced8cb95006e39827170z" + Math.floor(Math.random()*1000);;     
+    let l_quantity = Math.floor(Math.random()*30)+1;
+
+    let l_element = 
+    {
+        _id: l_id,
+        index: l_index,
+        name: l_name,
+        category: l_category,
+        quantity: l_quantity,
+    }
+
+    loadStock(l_element)
+    return false;
+};
+
+const removeProductForm = ()=>
+{
+    let l_index = document.forms["RemoveForm"]["findex"].value;
+
+    m_products.splice(l_index, 1);
+    console.log(m_products);
+};
+
+function orderProduct()
+{
+    //TODO: Ordenar productos por stock
+}
+
+let m_submitButton = document.getElementById("addButton");
+m_submitButton.addEventListener('click', addProductForm);
+let m_deleteButton = document.getElementById("removeButton");
+m_deleteButton.addEventListener('click', removeProductForm);
+
+console.log(m_products);
+listStock();
