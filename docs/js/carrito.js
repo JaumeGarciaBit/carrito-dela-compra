@@ -115,7 +115,7 @@ const onDeleteButton = (e) => {
 
 //Read JSON file
 let m_products = [];
-m_productDATA = "../data/products.json";
+m_productDATA = "https://raw.githubusercontent.com/JaumeGarciaBit/carrito-dela-compra/master/docs/data/products.json";
 let m_promise = fetch(m_productDATA);
 m_promise.then(response => response.json())
         .then(data =>
