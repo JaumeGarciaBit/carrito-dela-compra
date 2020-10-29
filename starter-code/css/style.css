@@ -245,6 +245,49 @@ html {
   border-color: #CF000F;
 }
 
+ul {
+  list-style: none;
+  margin-left: -10px;
+}
+ul li {
+  padding-left: 5%;
+  border: solid lightgreen 2px;
+  border-radius: 8px;
+  background-color: lightgreen;
+  margin-bottom: 10px;
+  width: fit-content;
+  width: 720px;
+}
+
+div {
+  background-color: lightblue;
+  border-radius: 8px;
+  width: 750px;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  padding-left: 2%;
+  margin-left: 3%;
+}
+
+form {
+  width: 80%;
+  margin-bottom: 10px;
+}
+
+form > * {
+  margin-right: 10px;
+}
+
+form > input.btn-delete, form > input.btn-success {
+  justify-content: end;
+}
+
+button#sortButton {
+  background-color: lightyellow;
+  font-weight: bold;
+  padding: 10px;
+}
+
 .quantity {
   margin: 0 5px;
 }
