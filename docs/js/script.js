@@ -8,7 +8,7 @@ let m_rankingContainer = document.getElementById("rankingContainer");
 
 //Read JSON file
 let m_products = [];
-let m_productDATA = "../data/products.json";
+let m_productDATA = "https://raw.githubusercontent.com/JaumeGarciaBit/carrito-dela-compra/master/docs/data/products.json";
 let m_promise = fetch(m_productDATA);
 m_promise.then(response => response.json()) //Read JSON
     .then(data => {
